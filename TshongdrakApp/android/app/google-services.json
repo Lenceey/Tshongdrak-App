@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1031668658339",
+    "project_id": "tshongdrak",
+    "storage_bucket": "tshongdrak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031668658339:android:af90af3abd3dfc31478f16",
+        "android_client_info": {
+          "package_name": "com.example.TshongdrakApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031668658339-halpdk58jrpfd1le0fo1oqtovuo3ehrl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCNaaAbJCSJBNpFtiN_0zHC3W59ju8pe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031668658339-halpdk58jrpfd1le0fo1oqtovuo3ehrl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
