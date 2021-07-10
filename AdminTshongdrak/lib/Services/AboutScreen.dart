@@ -31,10 +31,10 @@ class _AboutScreenState extends State<AboutScreen> {
          ),
          body: new ListView(
            children: [
-
              TextField(decoration: InputDecoration(
                labelText: 'Daily Entry', border: InputBorder.none,
              ),
+             textAlign: TextAlign.justify,
              controller: _controller,
              maxLines: 12,
              minLines: 10,

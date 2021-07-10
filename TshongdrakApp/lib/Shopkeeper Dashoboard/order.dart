@@ -31,7 +31,7 @@ class _OrderState extends State<Order> {
  Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        title: Text("My Cart"),
+        title: Text("Order List"),
          ),
          body:  Container(
         child: Row(
@@ -40,6 +40,7 @@ class _OrderState extends State<Order> {
     child: StreamBuilder<QuerySnapshot> (
                   stream: userRef
                   .collection("Product")
+                  .orderBy("time", descending: true)
                   .snapshots(),
                   builder: (context,snapshot){
                     if (snapshot.hasError)
@@ -59,7 +60,8 @@ class _OrderState extends State<Order> {
                           return Column(
                             children: [
                               MainOrder(b_list: userDocument,index: index),
-                               CustomerOrder(b_list: userDocument,index: index),
+                              CustomerOrder(b_list: userDocument,index: index),
+                              
                             ],
                           );
                         });

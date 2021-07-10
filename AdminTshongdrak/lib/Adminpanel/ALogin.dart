@@ -63,7 +63,7 @@ class _ALoginPageState extends State<ALoginPage> {
                 child: Row(
                   children: <Widget>[
                     Text("Admin Login!!!",
-                      style: TextStyle(color: Colors.brown[900],fontSize: 30, 
+                      style: TextStyle(color: Colors.black,fontSize: 30, 
                       fontWeight: FontWeight.bold),textAlign: TextAlign.left,),
                   ],
                 ),
@@ -82,7 +82,7 @@ class _ALoginPageState extends State<ALoginPage> {
                         child: Padding(
                           padding: EdgeInsets.all(8),
                           child: TextFormField(decoration: InputDecoration(
-                            icon: Icon(Icons.mail,color: Colors.lightBlue,),
+                            icon: Icon(Icons.mail,color: Colors.brown,),
                               labelText: '[Email]'),
                             validator: (input) =>
                             !input.contains('@')
@@ -106,7 +106,7 @@ class _ALoginPageState extends State<ALoginPage> {
                                 _seepassword = true;
                               });},
                                   child: Icon(CupertinoIcons.clear)),
-                              icon: Icon(Icons.lock, color: Colors.lightBlue,),
+                              icon: Icon(Icons.lock, color: Colors.brown,),
                               labelText: 'Password'),
                             validator: (input) =>
                             input.length < 6
@@ -120,8 +120,8 @@ class _ALoginPageState extends State<ALoginPage> {
                     ),
                     _isLoading ? Padding(padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                         child: LinearProgressIndicator(
-                          backgroundColor: Colors.blue[200],
-                          valueColor: AlwaysStoppedAnimation(Colors.blue),
+                          backgroundColor: Colors.brown,
+                          valueColor: AlwaysStoppedAnimation(Colors.brown),
                         )): SizedBox.shrink(),
                     SizedBox(height: 10),
                     Padding(
@@ -129,7 +129,7 @@ class _ALoginPageState extends State<ALoginPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                         child: Container(
-                          color: Colors.lightBlue,
+                          color: Colors.brown,
                           width: deviceInfo.size.width/3,
                           child: FlatButton(
                           onPressed: _submit,

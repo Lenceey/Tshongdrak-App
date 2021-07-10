@@ -9,6 +9,29 @@ class ShopkeeperForm extends StatefulWidget {
 class _ShopkeeperFormState extends State<ShopkeeperForm> {
   final _shopkeeperController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+   String _error;
+    bool _isLoading =false;
+
+    Widget ShowError(){
+    if(_error!=null){
+      setState(() {
+        _isLoading=false;
+      });
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+        child: Center(
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.warning,color: Colors.brown,),
+              SizedBox(width: 5,),
+              Expanded(child: Text(_error,style: TextStyle(color: Colors.black),))
+            ],
+          ),
+        ),
+      );
+    }
+    return SizedBox(height: 0,);
+  }   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +50,7 @@ class _ShopkeeperFormState extends State<ShopkeeperForm> {
                 TextFormField(
                   controller: _shopkeeperController,
                   decoration: InputDecoration(
-                      icon: Icon(Icons.card_membership, color: Colors.lightBlue,),
+                      icon: Icon(Icons.card_membership, color: Colors.brown,),
                       labelText: 'License',
                     labelStyle: TextStyle(fontSize: 20),
                   ) ,

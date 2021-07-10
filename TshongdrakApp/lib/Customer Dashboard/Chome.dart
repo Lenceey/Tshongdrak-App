@@ -46,8 +46,10 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
              //image carousel begins here
                child: Carousel(
                   images: [
-                     AssetImage('asserts/1.JPEG'),
-                    AssetImage('asserts/2.JPEG'),
+                    AssetImage('asserts/G1.jpg'),
+                    AssetImage('asserts/G2.jpg'),
+                    AssetImage('asserts/G3.jpg'),
+                    AssetImage('asserts/G4.jpg'),
                   ],
                   ),
                   ),
@@ -64,54 +66,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
             Container(
               height: 500.0,
               child: 
-      //         StreamBuilder(
-      //     stream: db,
-      //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      //       return snapshot.hasData ?
-      //       ListView.builder(
-      //         itemCount: snapshot.data.documents.length,
-      //         itemBuilder: (context, index) {
-      //           var userDocument = snapshot.data.documents;
-      //            return  Container(
-      //             padding: EdgeInsets.only(left: 0.1, right: 0,),
-      //             child: Card(
-      //               child: Row(
-      //                 children: <Widget>[
-      //                   Image.network(
-      //                     userDocument[index].data["thumnailUrl"].toString(),
-      //                     width: 100,
-      //                     height: 100,
-      //                     fit: BoxFit.scaleDown,
-      //                   ),
-                    
-      //                 Padding(
-      //                 padding: const EdgeInsets.all(10.0),
-      //                child: Column(
-      //                 children: <Widget>[
-      //                    Text(userDocument[index].data["Shop Name"]),
-      //                    Text(userDocument[index].data["Your Address"]),
-      //                    Divider(),
-      //                     Text(userDocument[index].data["Phone Number"]), 
-      //                     IconButton(
-      //                         icon: Icon(Icons.home, size: 10, color: Colors.black,),
-      //                         padding: EdgeInsets.only(left: 200, right: 0),
-      //                          onPressed: () {
-      //                           Navigator.pushNamed(context, '/Items');
-      //                          }   
-      //                     ),
-      //                 ],
-                      
-      //               ),
-                    
-      //               )
-      //                 ],
-      //               ),
-      //             ),
-      //            );
-      //         },
-      //       ) : Container();
-      //     }
-      // ),
       StreamBuilder(
           stream: db1,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -145,11 +99,6 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                             children: [
                               ElevatedButton(
                                 onPressed: () async{
-                                  // Map <String, dynamic> data = {
-                                  //   "productId": userDocument[index].data["productId"],
-                                  //   "uid": (await _auth.currentUser()).uid,
-                                  // };
-
                                   DocumentReference ref = Firestore.instance.collection("Customer").document((await _auth.currentUser()).uid).collection("Cart").document();
                                   ref.setData({
                                     "productId": userDocument[index].data["productId"],
@@ -168,12 +117,15 @@ class _CustomerHomeScreenState extends State<CustomerHomeScreen> {
                                 Map<String, dynamic> data = {
                                   "productId": userDocument[index].data["productId"],
                                   "uid": (await _auth.currentUser()).uid,
+                                  "time": DateTime.now(),
                                 };
                                 await Firestore.instance.collection("Buy").document(userDocument[index].data["productId"]).collection("Product").document((await _auth.currentUser()).uid).setData(data);
                                 Fluttertoast.showToast(msg: 'Successful',textColor: Colors.white);
-                                Navigator.pushNamed(context, "/chome");
+                                Navigator.pushNamed(
+                                  context, "/chome");
+                                  
                                 } ,
-                                 child: Text("Buy now")
+                                 child: Text("Buy now"),
                                  ),
                           ],
                           )

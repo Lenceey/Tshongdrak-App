@@ -1,49 +1,65 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'dart:async';
+
+import 'package:AdminTshongdrak/Adminpanel/ALogin.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => StartState();
+}
+
+class StartState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
+    return initScreen(context);
+  }
 
-  const colorizeColors = [
-    Colors.black,
-    Colors.white,
-  ];
 
-  const colorizeTextStyle = TextStyle(
-    fontSize: 20.0,
-    fontFamily: 'Horizon',
-  );
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  startTimer() async {
+    var duration = Duration(seconds: 5);
+    return new Timer(duration, route);
+  }
+
+  route() {
+    Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) =>ALoginPage(),
+      )
+    );
+  }
+
+  initScreen(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-          Image.asset(
-            'asserts/logo.jpeg',
-            height: 100.0,
-            width: 100.0,
-          ),
-          SizedBox(height: 10,),
-          SizedBox(
- // width: 250.0,
-  child: AnimatedTextKit(
-    animatedTexts: [
-      ColorizeAnimatedText(
-        'Tshongdrak APP',
-        textStyle: colorizeTextStyle,
-        colors: colorizeColors,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              child: Image.asset("asserts/logo.jpeg",height: 100.0, width: 100.0,),
+            ),
+            Padding(padding: EdgeInsets.only(top: 20.0)),
+            Text(
+              "TshongDrak App",
+              style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 20.0)),
+            CircularProgressIndicator(
+              backgroundColor: Colors.white,
+              strokeWidth: 1,
+            )
+          ],
+        ),
       ),
-    ],
-    isRepeatingAnimation: true,
-    onTap: () {
-      print("Tap Event");
-    },
-  ),
-),
-        ],)),
     );
   }
 }

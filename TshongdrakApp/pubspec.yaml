@@ -43,7 +43,9 @@ dependencies:
   snapshot:
   image_picker:
   flutter_launcher_icons: 
-  animated_text_kit: 
+  animated_text_kit:
+  expandable_text: 
+  #firebase_auth:
   
 
 flutter_native_splash: ^1.1.8+4

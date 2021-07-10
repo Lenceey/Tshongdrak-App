@@ -116,7 +116,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
         child: Center(
           child: Row(
             children: <Widget>[
-              Icon(Icons.warning,color: Colors.lightBlue,),
+              Icon(Icons.warning,color: Colors.brown,),
               SizedBox(width: 5,),
               Expanded(child: Text(_error,style: TextStyle(color: Colors.black),))
             ],
@@ -155,7 +155,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                          padding: EdgeInsets.all(8),
                          child: TextFormField(
                            decoration: InputDecoration(
-                             icon: Icon(Icons.person, color: Colors.lightBlue,),
+                             icon: Icon(Icons.person, color: Colors.brown,),
                              labelText: 'Full Name'),
                           validator: (String value) {
                             if (!RegExp(r"^[a-z_]{1,24}$",caseSensitive: false,).hasMatch(value)) {
@@ -176,7 +176,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           decoration: InputDecoration(
-                           icon: Icon(Icons.people, color: Colors.lightBlue,),
+                           icon: Icon(Icons.people, color: Colors.brown,),
                            labelText: 'CID'),
                             onSaved: (input) => _cid = input,
                              validator: (input) {
@@ -203,7 +203,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             hintText: 'mm/dd/yyyy',
-                           icon: Icon(Icons.people, color: Colors.lightBlue,),
+                           icon: Icon(Icons.people, color: Colors.brown,),
                            labelText: 'Date of Birth'),
                           validator: (String value) {
                               if (!RegExp(r'^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$').hasMatch(value)) {
@@ -222,7 +222,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                       child: Padding(
                         padding: EdgeInsets.all(8),
                         child: TextFormField(decoration: InputDecoration(
-                           icon: Icon(Icons.phone, color: Colors.lightBlue,),
+                           icon: Icon(Icons.phone, color: Colors.brown,),
                            prefixText: "+975",
                            labelText: 'Phone Number'),
                             onSaved: (input) => _phone = input,
@@ -250,7 +250,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                          child: TextFormField(
                            controller: _emailcontroller,
                            decoration: InputDecoration(
-                           icon: Icon(Icons.mail, color: Colors.lightBlue,),
+                           icon: Icon(Icons.mail, color: Colors.brown,),
                              labelText: 'Email',
                              suffixIcon: TextButton(
                                child: Text("Send OTP"),
@@ -273,7 +273,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                         child: TextFormField(
                           controller: _otpcontroller,
                           decoration: InputDecoration(
-                           icon: Icon(Icons.phone, color: Colors.lightBlue,),
+                           icon: Icon(Icons.phone, color: Colors.brown,),
                            labelText: 'OTP',
                             suffixIcon: TextButton(
                                child: Text("Verify OTP"),
@@ -310,7 +310,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                                  _seepassword = true;
                                });},
                                child: Icon(CupertinoIcons.clear)),
-                           icon: Icon(Icons.lock, color: Colors.lightBlue,),
+                           icon: Icon(Icons.lock, color: Colors.brown,),
                              labelText: 'Password'),
                            validator: (input) =>
                            input.length < 6
@@ -338,7 +338,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                                  _seepassword = true;
                                });},
                                child: Icon(CupertinoIcons.clear)),
-                           icon: Icon(Icons.lock, color: Colors.lightBlue,),
+                           icon: Icon(Icons.lock, color: Colors.brown,),
                              labelText: 'Confirm Password'),
                            validator: (String value) {
                              if (value != _passwordcontroller.value.text) {
@@ -355,7 +355,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                    _isLoading ? Padding(padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
                        child: LinearProgressIndicator(
                          backgroundColor: Colors.blue[200],
-                         valueColor: AlwaysStoppedAnimation(Colors.blue),
+                         valueColor: AlwaysStoppedAnimation(Colors.brown),
                        )): SizedBox.shrink(),
                    SizedBox(height: 20),
                    ShowError(),
@@ -365,7 +365,7 @@ class _CRegistrationPageState extends State<CRegistrationPage> {
                      child: GestureDetector(
                        onTap: _submit,
                        child: Card(
-                         color: Colors.lightBlue,
+                         color: Colors.brown,
                          child: Padding(
                            padding: const EdgeInsets.all(20),
                            child: Container(

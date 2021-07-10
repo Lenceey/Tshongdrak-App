@@ -17,13 +17,13 @@ class MainDrawer extends StatelessWidget {
                       width:80,
                       height:20,
                         ),
-                      Text('Menu', style: TextStyle(fontSize: 22, ),),
+                      Text('Menu', style: TextStyle(fontSize: 22, color: Colors.white, ),),
                 ],
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.home, color: Colors.brown,),
             title: Text('Home',
                 style: TextStyle(fontSize: 18),
                 
@@ -33,7 +33,7 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.account_circle, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.account_circle, color: Colors.brown,),
             title: Text(
                 'Account', 
                 style: TextStyle(fontSize: 18),
@@ -43,7 +43,7 @@ class MainDrawer extends StatelessWidget {
             } 
           ),
           ListTile(
-            leading: Icon(Icons.phone, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.phone, color: Colors.brown,),
             title: Text(
                 'Contact Us',
                 style: TextStyle(fontSize: 18),
@@ -53,7 +53,7 @@ class MainDrawer extends StatelessWidget {
             } 
           ),
           ListTile(
-            leading: Icon(Icons.help, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.help, color: Colors.brown,),
             title: Text(
                 'About Us',
                 style: TextStyle(fontSize: 18),),

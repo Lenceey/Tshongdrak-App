@@ -16,7 +16,7 @@ class ShopkeeperSignup extends StatefulWidget {
 
 class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
    final FirebaseAuth _auth = FirebaseAuth.instance;
- 
+
    final TextEditingController _otpcontroller = TextEditingController();
    final TextEditingController _emailcontroller = TextEditingController();
    final TextEditingController _passwordcontroller = TextEditingController();
@@ -68,7 +68,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
         child: Center(
           child: Row(
             children: <Widget>[
-              Icon(Icons.warning,color: Colors.lightBlue,),
+              Icon(Icons.warning,color: Colors.brown,),
               SizedBox(width: 5,),
               Expanded(child: Text(_error,style: TextStyle(color: Colors.black),))
             ],
@@ -77,7 +77,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
       );
     }
     return SizedBox(height: 0,);
-  }      
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +102,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                      child: TextFormField(
                                       controller: TextEditingController(text: myDoc[index]["name"]),
                                       decoration: InputDecoration(
-                                         icon: Icon(Icons.person, color: Colors.lightBlue,),
+                                         icon: Icon(Icons.person, color: Colors.brown),
                                           labelText: 'Full Name',
                                           labelStyle: TextStyle(fontSize: 20),
                                       ) ,
@@ -115,7 +115,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                      child: TextFormField(
                                       controller: TextEditingController(text: myDoc[index]["shop name"]),
                                       decoration: InputDecoration(
-                                          icon: Icon(Icons.people, color: Colors.lightBlue,),
+                                          icon: Icon(Icons.people, color: Colors.brown,),
                                           labelText: 'Shop Name',
                                           labelStyle: TextStyle(fontSize: 20),
                                       ) ,
@@ -128,7 +128,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                      child: TextFormField(
                                       controller: TextEditingController(text: myDoc[index]["phone"]),
                                       decoration: InputDecoration(
-                                          icon: Icon(Icons.phone, color: Colors.lightBlue,),
+                                          icon: Icon(Icons.phone, color: Colors.brown,),
                                           labelText: 'Phone Number',
                                           labelStyle: TextStyle(fontSize: 20),
                                       ) ,
@@ -143,7 +143,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                   child: TextFormField(
                                     controller: _emailcontroller,
                                     decoration: InputDecoration(
-                                    icon: Icon(Icons.mail, color: Colors.lightBlue,),
+                                    icon: Icon(Icons.mail, color: Colors.brown,),
                                       labelText: 'Email',
                                       suffixIcon: TextButton(
                                         child: Text("Send OTP"),
@@ -166,7 +166,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                   child: TextFormField(
                                     controller: _otpcontroller,
                                     decoration: InputDecoration(
-                                    icon: Icon(Icons.phone, color: Colors.lightBlue,),
+                                    icon: Icon(Icons.phone, color: Colors.brown,),
                                     labelText: 'OTP',
                                     suffixIcon: TextButton(
                                         child: Text("Verify OTP"),
@@ -201,7 +201,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                           _seepassword = true;
                                         });},
                                         child: Icon(CupertinoIcons.clear)),
-                                    icon: Icon(Icons.lock, color: Colors.lightBlue,),
+                                    icon: Icon(Icons.lock, color: Colors.brown,),
                                       labelText: 'Password'),
                                     validator: (input) =>
                                     input.length < 6
@@ -228,7 +228,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                         _seepassword = true;
                                       });},
                                       child: Icon(CupertinoIcons.clear)),
-                                  icon: Icon(Icons.lock, color: Colors.lightBlue,),
+                                  icon: Icon(Icons.lock, color: Colors.brown,),
                                     labelText: 'Confirm Password'),
                                   validator: (String value) {
                                     if (value != _passwordcontroller.value.text) {
@@ -261,7 +261,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                                 FirebaseUser signedInUser = authResult.user;
                                                 if(signedInUser !=null)
                                                 {
-                                                    
+
                                                   Map <String, dynamic> data = {
                                                       "Name":  myDoc[index]["name"],
                                                       "License":  myDoc[index]["license"],
@@ -283,7 +283,7 @@ class _ShopkeeperSignupState extends State<ShopkeeperSignup> {
                                          Navigator.pushNamed(context, '/Shome');
                                 },
                               ),
-                                        
+
                       SizedBox(height: 15,),
                       Text("Already have account!!!",style: TextStyle(color: Colors.black)),
                       SizedBox(height: 15,),

@@ -10,7 +10,8 @@ class MainOrder extends StatelessWidget {
   @override
  Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
-        future: Firestore.instance.collection("items").where("productId",isEqualTo: b_list[index]["productId"].toString()).getDocuments(),
+        future: Firestore.instance.collection("items").where("productId",isEqualTo: b_list[index]["productId"].toString())
+        .getDocuments(),
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot> snapshot){
           if (!snapshot.hasData) {
@@ -25,15 +26,6 @@ class MainOrder extends StatelessWidget {
             return  Column(
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 return 
-                // Container(
-                //   child: Row(
-                //     children: [
-                //       Text(document["title"], style: TextStyle(fontSize: 20)),
-                //       Text(document["stock"], style: TextStyle(fontSize: 20)),
-                //       Text(document["price"], style: TextStyle(fontSize: 20)),            
-                //     ],
-                //     ),
-                // );
                  Container(
                   padding: EdgeInsets.only(left: 0.1, right: 0,),
                   child: Card(

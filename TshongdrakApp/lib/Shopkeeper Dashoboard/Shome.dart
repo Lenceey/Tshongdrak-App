@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:TshongdrakApp/Shopkeeper%20Dashoboard/order.dart';
 import 'package:TshongdrakApp/Widget/loadingWidget.dart';
-import 'package:TshongdrakApp/components/ShopNameProfile.dart';
-import 'package:TshongdrakApp/components/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +24,12 @@ class _AdminState extends State<ShopHomeScreen>
   Future<String> getCurrentUID() async{
     return (await _auth.currentUser()).uid;
   }
+        var db;
+  void initState() {
+    db = Firestore.instance.collectionGroup("items").snapshots();
+    super.initState();
+  }
+
   File file;
    TextEditingController _priceEditingController = TextEditingController();
    TextEditingController _titleEditingController = TextEditingController();
@@ -75,7 +79,7 @@ class _AdminState extends State<ShopHomeScreen>
             ],
           ),
           elevation: 0.0,
-          backgroundColor: Colors.blue[400],
+          backgroundColor: Colors.brown,
         ),
         body: _loadScreen(),
         drawer: ShopMainDrawer(),
@@ -87,103 +91,64 @@ class _AdminState extends State<ShopHomeScreen>
       case Page.dashboard:
         return Column(
           children: <Widget>[
+           
             Expanded(
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.people_outline),
-                              label: Text("Users")),
-                          subtitle: Text(
-                            '7',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
+              child: new ListView(
+           children: <Widget>[
+             Container(
+                height: 500.0,
+              child: StreamBuilder(
+          stream: db,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            return snapshot.hasData ?
+            ListView.builder(
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (context, index) {
+                var userDocument = snapshot.data.documents;
+                 return  Container(
+                  padding: EdgeInsets.only(left: 0.1, right: 0,),
+                  child: Card(
+                    child: Row(
+                      children: <Widget>[
+                         Padding(padding: EdgeInsets.only(top: 15)),
+                        Image.network(
+                          userDocument[index].data["thumnailUrl"].toString(),
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.scaleDown,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                     child: Column(
+                      children: <Widget>[
+                         Text(userDocument[index].data["title"]),
+                         Text(userDocument[index].data["stock"]),
+                         Divider(),
+                         
+                          Text(userDocument[index].data["price"]),
+                          IconButton(
+                              icon: Icon(Icons.delete, size: 10, color: Colors.black,),
+                              padding: EdgeInsets.only(left: 200, right: 0),
+                               onPressed: () {
+                                _deleteTask();
+                               },
+                               ),
+                      ],
+                      ),
+                        ),
+                      
+                   
+                      ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.category),  
-                              label: Text("Categories")),
-                          subtitle: Text(
-                            '23',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.track_changes),
-                              label: Text("Products")),
-                          subtitle: Text(
-                            '120',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding:const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.tag_faces),
-                              label: Text("Sold")),
-                          subtitle: Text(
-                            '13',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.shopping_cart),
-                              label: Text("Orders")),
-                          subtitle: Text(
-                            '5',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding:const EdgeInsets.all(4),
-                    child: Card(
-                      child: ListTile(
-                          title: FlatButton.icon(
-                              onPressed: null,
-                              icon: Icon(Icons.close),
-                              label: Text("Return")),
-                          subtitle: Text(
-                            '0',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: active, fontSize: 60.0),
-                          )),
-                    ),
-                  ),
-                ],
-              ),
+                 );
+              },
+            ) : Container();
+          }
+      ),
+       ),
+      ],
+      ),
             ),
           ],
         );
@@ -193,36 +158,15 @@ class _AdminState extends State<ShopHomeScreen>
 
       case Page.manage:
         return ListView(
-          children: <Widget>[
-             ListTile(
-              leading: Icon(Icons.person),
-              title: Text("Your Profile"),
-           
-              onTap:()=> {
-                Navigator.push(context,
-                 MaterialPageRoute(builder: (context) => ShopNameProfile()),
-                ),
-              },
-           ),
-           Divider(),
+          children: <Widget>[      
             ListTile(
               leading: Icon(Icons.add),
               title: Text("Add product"),
               onTap:()=> takeImage(context),
             ),
             Divider(),
-            ListTile(
-              leading: Icon(Icons.change_history),
-              title: Text("Item List"),
-              onTap: () {
-                Navigator.push(context,
-                 MaterialPageRoute(builder: (context) => Product()),
-                 );
-              },
-            ),
-            Divider(),
               ListTile(
-              leading: Icon(Icons.change_history),
+              leading: Icon(Icons.add),
               title: Text("Order"),
               onTap: () {
                 Navigator.push(context,
@@ -230,6 +174,7 @@ class _AdminState extends State<ShopHomeScreen>
                  );
               },
             ),  
+            Divider(),
           ],
         );
         break;
@@ -294,7 +239,7 @@ pickPhotoFromGallery() async {
         flexibleSpace: Container(
           decoration: new BoxDecoration(
             gradient: new LinearGradient(
-              colors: [Colors.blue],
+              colors: [Colors.brown],
               begin: const FractionalOffset(0.0, 0.0),
               end: const FractionalOffset(1.0, 0.0),
               stops: [0.0, 1.0],
@@ -304,14 +249,14 @@ pickPhotoFromGallery() async {
         leading: IconButton(icon: Icon(Icons.arrow_back, color: Colors.white),
          onPressed: clearFormInfo),
         title: Text('New Product', style: TextStyle(
-          color: Colors.black, fontSize: 24.0, 
+          color: Colors.white, fontSize: 24.0, 
           fontWeight: FontWeight.bold)),
         actions: [
           FlatButton(
           onPressed: 
           uploading ? null : ()=> uploadImageAndSaveItemInfo(),
           child: Text("Add", style: TextStyle(
-            color: Colors.pink, fontSize: 16.0, 
+            color: Colors.white, fontSize: 16.0, 
             fontWeight: FontWeight.bold,)),
           ),
           ],
@@ -334,7 +279,7 @@ pickPhotoFromGallery() async {
             ),
             Padding(padding: EdgeInsets.only(top: 12.0)),
             ListTile(
-              leading: Icon(Icons.change_history, color: Colors.blue),
+              leading: Icon(Icons.change_history, color: Colors.brown),
               title: Container(
                 width: 250.0,
                 child: TextField(
@@ -351,7 +296,7 @@ pickPhotoFromGallery() async {
             Divider(color: Colors.blue),
 
             ListTile(
-              leading: Icon(Icons.change_history, color: Colors.blue),
+              leading: Icon(Icons.change_history, color: Colors.brown),
               title: Container(
                 width: 250.0,
                 child: TextField(
@@ -367,7 +312,7 @@ pickPhotoFromGallery() async {
             ),
             Divider(color: Colors.blue),
             ListTile(
-              leading: Icon(Icons.change_history, color: Colors.blue),
+              leading: Icon(Icons.change_history, color: Colors.brown),
               title: Container(
                 width: 250.0,
                 child: TextField(
@@ -438,7 +383,10 @@ uploadImageAndSaveItemInfo() async{
      _priceEditingController.clear();
    });
  }
-
-
-
+ _deleteTask()  async{
+        CollectionReference collectionReference = Firestore.instance.collection('items');
+        QuerySnapshot querySnapshot = await collectionReference.getDocuments();
+          querySnapshot.documents[0].reference.delete();
+          Fluttertoast.showToast(msg: 'Deleted',textColor: Colors.white);
+    }
  }

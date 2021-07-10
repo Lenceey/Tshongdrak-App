@@ -1,8 +1,6 @@
-import 'package:TshongdrakApp/Customer%20Dashboard/Chome.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class MainCart extends StatelessWidget {
          final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,15 +31,6 @@ class MainCart extends StatelessWidget {
             return  Column(
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 return 
-                // Container(
-                //   child: Row(
-                //     children: [
-                //       Text(document["title"], style: TextStyle(fontSize: 20)),
-                //       Text(document["stock"], style: TextStyle(fontSize: 20)),
-                //       Text(document["price"], style: TextStyle(fontSize: 20)),            
-                //     ],
-                //     ),
-                // );
                  Container(
                   padding: EdgeInsets.only(left: 0.1, right: 0,),
                   child: Card(
@@ -68,21 +57,21 @@ class MainCart extends StatelessWidget {
                        
                         ),
                         SizedBox(width: 10,),
-                        ElevatedButton(
-                          onPressed: () async{
-                             Map<String, dynamic> data = {
-                                  "productId": document["productId"],
-                                  "uid": (await _auth.currentUser()).uid,
-                                };
-                           await Firestore.instance.collection("Buy").document(document["productId"]).collection("Product").document((await _auth.currentUser()).uid).setData(data);
-                          //  await Firestore.instance.collection("Customer").document((await _auth.currentUser()).uid).collection("Cart").document(document["id"]).delete();
-                                Fluttertoast.showToast(msg: 'Successful',textColor: Colors.white);
-                                Navigator.push(context,
-                 MaterialPageRoute(builder: (context) => CustomerHomeScreen()),
-                 );
-                          }, 
-                          child: Text('Buy now')
-                          )
+                //         ElevatedButton(
+                //           onPressed: () async{
+                //              Map<String, dynamic> data = {
+                //                   "productId": document["productId"],
+                //                   "uid": (await _auth.currentUser()).uid,
+                //                 };
+                //            await Firestore.instance.collection("Buy").document(document["productId"]).collection("Product").document((await _auth.currentUser()).uid).setData(data);
+                //           //  await Firestore.instance.collection("Customer").document((await _auth.currentUser()).uid).collection("Cart").document(document["id"]).delete();
+                //                 Fluttertoast.showToast(msg: 'Successful',textColor: Colors.white);
+                //                 Navigator.push(context,
+                //  MaterialPageRoute(builder: (context) => CustomerHomeScreen()),
+                //  );
+                //           }, 
+                //           child: Text('Buy now')
+                //           )
                       ],
                     ),
                   ),

@@ -34,8 +34,8 @@ class CustomerOrder extends StatelessWidget {
                      child: Column(
                       children: <Widget>[
                          Text(document["Name"]),
-                         Text(document["Phone Number"]),
-                        
+                         //Text(document["Address"]),
+                          Text(document["Phone Number"]),
                       ],
                       ),
                         ),

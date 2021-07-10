@@ -28,7 +28,7 @@ class _SellerState extends State<Seller> {
                   padding: EdgeInsets.only(left: 15, right: 15),
                   child: Container(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [Colors.lightBlue,Colors.lightBlue]),
+                        gradient: LinearGradient(colors: [Colors.brown[200],Colors.brown[200]]),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                        margin: EdgeInsets.only(bottom: 15),

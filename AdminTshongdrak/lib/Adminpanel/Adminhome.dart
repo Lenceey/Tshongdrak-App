@@ -1,5 +1,6 @@
 import 'package:AdminTshongdrak/Services/Manage.dart';
 import 'package:AdminTshongdrak/Services/seller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:AdminTshongdrak/Adminpanel/Admin_drawer.dart';
 class AdminHome extends StatefulWidget {
@@ -8,6 +9,12 @@ class AdminHome extends StatefulWidget {
 }
 
 class _AdminHomeState extends State<AdminHome> {
+   Stream<QuerySnapshot> requestCustomer() {
+    return Firestore.instance.collection("MainCustomer").snapshots();
+  }
+   Stream<QuerySnapshot> requestShopkeeper() {
+    return Firestore.instance.collection("Shopkeeper").snapshots();
+  }
   String name;
   String cid;
   String address;
@@ -84,9 +91,9 @@ class _AdminHomeState extends State<AdminHome> {
             ),),
           ],
         ),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.brown,
         title: Text("Tshongdrak App",style: TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
         ),
@@ -99,11 +106,40 @@ class _AdminHomeState extends State<AdminHome> {
           //Dashboard part
           Container(
             padding: const EdgeInsets.all(0.5),
-            child: GridView.count(
-              mainAxisSpacing: 5,
-              crossAxisSpacing: 5,
+            child:  
+            // Card(
+            //        child: Column(
+            //          children: [
+            //            Row(
+            //              children: [
+            //                Icon(
+            //                  Icons.people,
+            //                  size: 30,
+            //                ),
+            //                SizedBox(width: 10),
+            //                Text('Customer')
+            //              ]
+            //            ),
+            //            Center(
+            //              child: StreamBuilder<QuerySnapshot>(
+            //     stream: requestCustomer(),
+            //     builder: (context, snapshot){
+
+            //       if (snapshot.hasData){
+
+            //         return Text(snapshot?.data.documents.size.toString()?? '0',style:  TextStyle(fontSize: 20, color: Colors.blue));
+            //       }
+            //       return Center(child: CircularProgressIndicator(),);
+            //     }
+            //                   ),
+            //            )
+            //          ],
+            //          ),
+            //         )
+            GridView.count(
               crossAxisCount: 2,
               children: [
+               
                 _buildSingleContainer(
                   context: context,
                   count: 1,

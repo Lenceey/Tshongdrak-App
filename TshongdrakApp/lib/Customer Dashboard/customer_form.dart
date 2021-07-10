@@ -26,7 +26,7 @@ class _CustomerFormState extends State<CustomerForm> {
                 TextFormField(
                   controller: _customerController,
                   decoration: InputDecoration(
-                      icon: Icon(Icons.card_membership, color: Colors.lightBlue,),
+                      icon: Icon(Icons.card_membership, color: Colors.brown ,),
                       labelText: 'CID',
                     labelStyle: TextStyle(fontSize: 20),
                   ) ,

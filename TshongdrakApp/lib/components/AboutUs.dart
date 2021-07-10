@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:TshongdrakApp/Screens/main_drawer.dart';
-
+import 'package:expandable_text/expandable_text.dart';
   
 class AboutScreen extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   padding: EdgeInsets.only(left: 15, right: 15,),
                   child: Container(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [Colors.lightBlue,Colors.lightBlue]),
+                        gradient: LinearGradient(colors: [Colors.white,Colors.white]),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                        margin: EdgeInsets.only(bottom: 15, top: 10,),
@@ -41,7 +41,16 @@ class _AboutScreenState extends State<AboutScreen> {
                       children: [
                         Row(
                           children: [
-                            Text(userDocument[index].data["info"],),
+                           Text(
+                              userDocument[index].data["info"],
+                              // style: TextStyle(
+                              //   fontSize: 15.0,
+                              //   color: Colors.black,letterSpacing: 0.3,
+                              // ),
+                              // textAlign: TextAlign.justify,
+                              // expandText: 'read more',
+                              // collapseText: 'wrap up',
+                              ),
                           ],
                         ),
                       ]

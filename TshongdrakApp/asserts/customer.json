@@ -2,22 +2,26 @@
     {
       "cid": "11604001849",
       "name": "Chimi Lendral Choden",
-      "phone": "17311981"
+      "phone": "17311981",
+      "address": "Tashi Pokto"
     },
     {
         "cid": "11604001850",
         "name": "Dorji Pelmo",
-        "phone": "17234230"
+        "phone": "17420043",
+        "address": "GCIT college"
       },
       {
         "cid": "11604001851",
-        "name": "Lenceey",
-        "phone": "17234230"
+        "name": "Karma Choden",
+        "phone": "17659066",
+        "address": "BPC area"
       },
       {
         "cid": "11604001852",
-        "name": "Kinley",
-        "phone": "17234230"
+        "name": "Pema Jamtsho",
+        "phone": "77705041",
+        "address": "BHU area"
       }
     
   ]

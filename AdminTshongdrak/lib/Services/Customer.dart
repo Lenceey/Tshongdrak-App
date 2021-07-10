@@ -10,16 +10,16 @@ class Customer extends StatefulWidget {
 class _CustomerState extends State<Customer> {
       var db;
   void initState() {
-    db = Firestore.instance.collectionGroup("Customer").snapshots();
+    db = Firestore.instance.collectionGroup("MainCustomer").snapshots();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Colors.brown,
         title: Text("Customer List",style: TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           ),),
        ),
@@ -35,7 +35,7 @@ class _CustomerState extends State<Customer> {
                   padding: EdgeInsets.only(left: 15, right: 15),
                   child: Container(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [Colors.lightBlue,Colors.lightBlue]),
+                        gradient: LinearGradient(colors: [Colors.brown[200],Colors.brown[200]]),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                        margin: EdgeInsets.only(bottom: 15, top: 15),

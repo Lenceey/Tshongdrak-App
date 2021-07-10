@@ -1,7 +1,9 @@
+import 'package:TshongdrakApp/Customer%20Dashboard/Chome.dart';
 import 'package:TshongdrakApp/components/Main_Cart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CartScreen extends StatefulWidget {
 
@@ -10,11 +12,11 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  //   final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
 
-  // Future<String> getCurrentUID() async{
-  //   return (await auth.currentUser()).uid;
-  // }
+  Future<String> getCurrentUID() async{
+    return (await auth.currentUser()).uid;
+  }
 
   DocumentReference userRef;
  @override
@@ -67,7 +69,22 @@ class _CartScreenState extends State<CartScreen> {
                           return Column(
                             children: [
                               MainCart(b_list: userDocument,index: index),
-                            
+                              ElevatedButton(
+                          onPressed: () async{
+                             Map<String, dynamic> data = {
+                                  "productId": userDocument[index].data["productId"],
+                                  "uid": (await auth.currentUser()).uid,
+                                  "time": DateTime.now(),
+                                };
+                           await Firestore.instance.collection("Buy").document(userDocument[index].data["productId"]).collection("Product").document((await auth.currentUser()).uid).setData(data);
+                           await Firestore.instance.collection("Customer").document((await auth.currentUser()).uid).collection("Cart").document(userDocument[index].data["id"]).delete();
+                                Fluttertoast.showToast(msg: 'Successful',textColor: Colors.white);
+                                Navigator.push(context,
+                 MaterialPageRoute(builder: (context) => CustomerHomeScreen()),
+                 );
+                          }, 
+                          child: Text('Buy now')
+                          )
                             ],
                           );
                         });
@@ -78,6 +95,6 @@ class _CartScreenState extends State<CartScreen> {
           ],
         ),
       ),
-         );
+      );
   }
 }

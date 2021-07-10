@@ -24,13 +24,13 @@ class CustomerMainDrawer extends StatelessWidget {
                       width:80,
                       height:20,
                         ),
-                      Text('Menu', style: TextStyle(fontSize: 22, ),),
+                      Text('Menu', style: TextStyle(fontSize: 22, color: Colors.white),),
                 ],
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.home, color: Colors.brown,),
             title: Text('Home',
                 style: TextStyle(fontSize: 18),
                 
@@ -40,7 +40,7 @@ class CustomerMainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.phone, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.phone, color: Colors.brown,),
             title: Text(
                 'Contact Us',
                 style: TextStyle(fontSize: 18),
@@ -50,7 +50,7 @@ class CustomerMainDrawer extends StatelessWidget {
             } 
           ),
           ListTile(
-            leading: Icon(Icons.help, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.help, color:Colors.brown,),
             title: Text(
                 'About Us',
                 style: TextStyle(fontSize: 18),),
@@ -59,7 +59,7 @@ class CustomerMainDrawer extends StatelessWidget {
             } 
             ),   
              ListTile(
-            leading: Icon(Icons.logout, color:Color(0xFF03A9F4),),
+            leading: Icon(Icons.logout, color:Colors.brown,),
             title: Text(
                 'Logout',
                 style: TextStyle(fontSize: 18),),
